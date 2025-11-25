@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificados de Ahorro Energético (CAE) | Bafir</title>
+  <meta name="description" content="Agencia especializada en Certificados de Ahorro Energético (CAE). Gestión integral para comunidades y empresas: asesoría, tramitación y optimización de ahorros energéticos.">
+  <link rel="icon" type="image/png" href="bafir_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset y tipografía */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { line-height: 1.6; color: #333; }
+    a { text-decoration: none; }
+
+    /* Colores Bafir */
+    :root { --color-primario: #00a0e3; --color-secundario: #ff7a00; --gris-texto: #333; --fondo: #fff; }
+
+    /* Header */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: var(--fondo); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    header img { height: 60px; }
+    nav a { margin-left: 20px; color: var(--gris-texto); font-weight: 600; }
+    nav a.cta { background: var(--color-secundario); color: #fff; padding: 10px 20px; border-radius: 5px; }
+
+    /* Hero */
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; background: #f0f8ff; }
+    .hero h1 { font-size: 2.5rem; color: var(--color-primario); margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+    .hero .cta-group a { margin: 5px; padding: 12px 25px; border-radius: 5px; font-weight: 600; }
+    .hero .cta-primary { background: var(--color-secundario); color: #fff; }
+    .hero .cta-whatsapp { background: #25d366; color: #fff; }
+
+    /* Secciones */
+    section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+    section h2 { color: var(--color-primario); margin-bottom: 40px; text-align: center; font-size: 2rem; }
+    .servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .servicio { border: 1px solid #ddd; padding: 20px; border-radius: 10px; text-align: center; transition: transform 0.3s ease; }
+    .servicio:hover { transform: translateY(-5px); }
+    .servicio h3 { margin-bottom: 15px; color: var(--color-primario); }
+
+    /* Contacto */
+    form { display: flex; flex-direction: column; max-width: 500px; margin: 0 auto; }
+    form input, form textarea { padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
+    form button { padding: 12px; background: var(--color-secundario); color: #fff; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; }
+
+    /* Footer */
+    footer { text-align: center; padding: 40px 20px; background: #f8f8f8; color: #666; font-size: 0.9rem; }
+
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="9273502573_541c3cd9-fbd1-4d11-ac66-318ba6add182.png" alt="Bafir Logo">
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/33638054535" class="cta">WhatsApp</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Especialistas en Certificados de Ahorro Energético (CAE)</h1>
+  <p>Gestionamos tus Certificados de Ahorro Energético de forma rápida y sin complicaciones, para comunidades y empresas.</p>
+  <div class="cta-group">
+    <a href="#contacto" class="cta-primary">Solicitar estudio de CAE</a>
+    <a href="https://wa.me/33638054535" class="cta-whatsapp">Contactar por WhatsApp</a>
+  </div>
+</section>
+
+<section id="servicios">
+  <h2>Nuestros Servicios</h2>
+  <div class="servicios">
+    <div class="servicio">
+      <h3>Gestión integral de CAE</h3>
+      <p>Tramitamos tus Certificados de Ahorro Energético desde el inicio hasta la validación final.</p>
+    </div>
+    <div class="servicio">
+      <h3>Asesoría energética</h3>
+      <p>Asesoramos comunidades y empresas para maximizar sus ahorros energéticos y cumplir la normativa.</p>
+    </div>
+    <div class="servicio">
+      <h3>Optimización de proyectos</h3>
+      <p>Analizamos proyectos para mejorar su eficiencia y garantizar beneficios económicos.</p>
+    </div>
+    <div class="servicio">
+      <h3>Informe técnico y documentación</h3>
+      <p>Preparamos toda la documentación técnica necesaria para obtener los CAE sin errores.</p>
+    </div>
+    <div class="servicio">
+      <h3>Tramitación con sujetos obligados</h3>
+      <p>Nos encargamos de la comunicación y validación con los sujetos obligados correspondientes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <form action="https://formsubmit.co/tu-email@dominio.com" method="POST">
+    <input type="text" name="name" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
+    <button type="submit">Solicitar estudio de CAE</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 Bafir. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Aviso legal</a>
+</footer>
+
+</body>
+</html>
