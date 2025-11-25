@@ -97,7 +97,7 @@
 
 <section id="contacto">
   <h2>Contacto</h2>
-  <form action="https://formsubmit.co/tu-email@dominio.com" method="POST">
+  <form action="https://formsubmit.co/idelacalle@bafir.es" method="POST">
     <input type="text" name="name" placeholder="Nombre" required>
     <input type="email" name="email" placeholder="Email" required>
     <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
