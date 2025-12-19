@@ -3,100 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bafir</title>
+  <title>Bafir - Certificados de Ahorro Energético</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* RESET */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-    body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
-
+    body { background-color: #f4f8f9; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
 
+    /* Header / Hero */
     header {
-      background-color: #0d6efd;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
       color: white;
-      padding: 2rem 1rem;
       text-align: center;
+      padding: 6rem 1rem 4rem;
     }
-
-    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.2rem; }
+    header h1 { font-size: 3rem; margin-bottom: 1rem; color: #0d6efd; }
+    header p { font-size: 1.3rem; margin-bottom: 2rem; }
+    header a.button {
+      background-color: #32cd32; /* verde clarito */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    header a.button:hover { opacity: 0.85; }
 
     nav {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
-
     nav a { color: white; font-weight: 600; transition: 0.3s; }
     nav a:hover { opacity: 0.8; }
 
-    section { padding: 4rem 1rem; text-align: center; }
-
-    .section-title { font-size: 2rem; margin-bottom: 2rem; color: #0d6efd; }
-
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-
+    /* Sections */
+    section {
+      padding: 6rem 1rem;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: #0d6efd;
+    }
     .card {
       background-color: white;
-      border-radius: 10px;
       padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin: 1rem;
+      max-width: 400px;
       transition: transform 0.3s;
     }
-
     .card:hover { transform: translateY(-5px); }
+    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
 
+    /* Contact Form */
+    form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    input, textarea {
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+    }
+    button {
+      background-color: #0d6efd;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { opacity: 0.85; }
+
+    /* Footer */
     footer {
-      background-color: #343a40;
+      background-color: #0d6efd;
       color: white;
       text-align: center;
       padding: 2rem 1rem;
     }
 
-    footer a { color: #0d6efd; }
+    @media(max-width: 768px) {
+      .cards { flex-direction: column; align-items: center; }
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1.1rem; }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>Bafir</h1>
-    <p>Soluciones innovadoras para tu negocio</p>
+    <p>Monetizamos tus Certificados de Ahorro Energético (CAE) de manera rápida y eficiente</p>
     <nav>
-      <a href="#about">Sobre Nosotros</a>
-      <a href="#services">Servicios</a>
+      <a href="#monetizamos">Monetizamos tus CAE</a>
+      <a href="#quien">Quién puede optar</a>
       <a href="#contact">Contacto</a>
     </nav>
+    <a href="#contact" class="button">Contáctanos</a>
   </header>
 
-  <section id="about">
-    <h2 class="section-title">Sobre Nosotros</h2>
-    <p>En Bafir nos dedicamos a ofrecer soluciones rápidas, eficientes y de calidad, adaptadas a las necesidades de tu negocio.</p>
-  </section>
-
-  <section id="services">
-    <h2 class="section-title">Nuestros Servicios</h2>
+  <section id="monetizamos">
+    <h2 class="section-title">Monetizamos tus CAE</h2>
+    <p>Convertimos tus certificados en valor real de forma segura y transparente, facilitando la gestión de tus proyectos energéticos.</p>
     <div class="cards">
       <div class="card">
-        <h3>Consultoría</h3>
-        <p>Asesoramiento experto para optimizar tus procesos y mejorar tu rentabilidad.</p>
+        <h3>Rápido</h3>
+        <p>Gestión eficiente y sin complicaciones.</p>
       </div>
       <div class="card">
-        <h3>Desarrollo Web</h3>
-        <p>Diseño y desarrollo de sitios web modernos, atractivos y funcionales.</p>
+        <h3>Transparente</h3>
+        <p>Proceso claro con seguimiento constante.</p>
       </div>
       <div class="card">
-        <h3>Soporte</h3>
-        <p>Asistencia continua para asegurar que todo funcione de manera impecable.</p>
+        <h3>Seguro</h3>
+        <p>Operaciones confiables y verificadas.</p>
       </div>
     </div>
   </section>
 
+  <section id="quien">
+    <h2 class="section-title">Quién puede optar a los CAE</h2>
+    <p>Empresas del sector energético, constructoras sostenibles, y cualquier proyecto que cumpla los criterios de eficiencia energética.</p>
+  </section>
+
   <section id="contact">
     <h2 class="section-title">Contacto</h2>
-    <p>Escríbenos a <a href="mailto:contacto@bafir.es">contacto@bafir.es</a> o síguenos en nuestras redes sociales.</p>
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo electrónico" required>
+      <textarea placeholder="Mensaje" rows="5" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
   </section>
 
   <footer>
