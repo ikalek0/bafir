@@ -1,92 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bafir Energy</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bafir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7f5;
-      color: #333;
-    }
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+
+    a { text-decoration: none; color: inherit; }
+
     header {
-      background: linear-gradient(135deg, #2e7d32, #66bb6a);
-      padding: 2rem;
-      text-align: center;
+      background-color: #0d6efd;
       color: white;
-    }
-    header img {
-      height: 60px;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    p.subtitle {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      opacity: 0.9;
-    }
-    section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #2e7d32;
-      margin-bottom: 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: #fafafa;
-      padding: 1.2rem;
-      border-radius: 10px;
-      border: 1px solid #e0e0e0;
-    }
-    footer {
+      padding: 2rem 1rem;
       text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      background: #e8f5e9;
-      color: #2e7d32;
     }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    nav a { color: white; font-weight: 600; transition: 0.3s; }
+    nav a:hover { opacity: 0.8; }
+
+    section { padding: 4rem 1rem; text-align: center; }
+
+    .section-title { font-size: 2rem; margin-bottom: 2rem; color: #0d6efd; }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer a { color: #0d6efd; }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="bafir_logo.png" alt="Bafir Logo" />
-    <h1>Bafir Energy</h1>
-    <p class="subtitle">Soluciones inteligentes para Certificados de Ahorro Energético</p>
+    <h1>Bafir</h1>
+    <p>Soluciones innovadoras para tu negocio</p>
+    <nav>
+      <a href="#about">Sobre Nosotros</a>
+      <a href="#services">Servicios</a>
+      <a href="#contact">Contacto</a>
+    </nav>
   </header>
 
-  <section>
-    <h2>¿Qué hacemos?</h2>
-    <p>Bafir Energy te ayuda a obtener y gestionar Certificados de Ahorro Energético (CAE) de forma rápida, segura y profesional. Conectamos a propietarios, instaladores y obligados energéticos para maximizar el ahorro y acelerar la transición ecológica.</p>
-    <div class="grid">
-      <div class="card">✔ Gestión completa del proceso CAE</div>
-      <div class="card">✔ Acompañamiento técnico y normativo</div>
-      <div class="card">✔ Optimización del valor económico</div>
-      <div class="card">✔ Plataforma simple y transparente</div>
+  <section id="about">
+    <h2 class="section-title">Sobre Nosotros</h2>
+    <p>En Bafir nos dedicamos a ofrecer soluciones rápidas, eficientes y de calidad, adaptadas a las necesidades de tu negocio.</p>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Consultoría</h3>
+        <p>Asesoramiento experto para optimizar tus procesos y mejorar tu rentabilidad.</p>
+      </div>
+      <div class="card">
+        <h3>Desarrollo Web</h3>
+        <p>Diseño y desarrollo de sitios web modernos, atractivos y funcionales.</p>
+      </div>
+      <div class="card">
+        <h3>Soporte</h3>
+        <p>Asistencia continua para asegurar que todo funcione de manera impecable.</p>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>¿Por qué Bafir?</h2>
-    <p>Somos expertos en eficiencia energética y actuamos como tu socio estratégico. Nuestro objetivo es que tus proyectos obtengan la máxima rentabilidad y el mínimo esfuerzo administrativo.</p>
+  <section id="contact">
+    <h2 class="section-title">Contacto</h2>
+    <p>Escríbenos a <a href="mailto:contacto@bafir.es">contacto@bafir.es</a> o síguenos en nuestras redes sociales.</p>
   </section>
 
   <footer>
-    © 2025 Bafir Energy — Todos los derechos reservados
+    <p>&copy; 2025 Bafir. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>
