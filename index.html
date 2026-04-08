@@ -1,152 +1,1110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bafir - Certificados de Ahorro Energético</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAFIR — Certificados de Ahorro Energético</title>
+  <meta name="description" content="BAFIR te ayuda a obtener Certificados de Ahorro Energético (CAE) y convertir tus mejoras de eficiencia en ingresos reales. Para pymes, comercios y comunidades de vecinos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background-color: #f4f8f9; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Header / Hero */
-    header {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 6rem 1rem 4rem;
+    :root {
+      --blue: #29ABE2;
+      --blue-dark: #1a7aad;
+      --blue-light: #e8f7fd;
+      --green: #3DBE8A;
+      --green-dark: #2a9a6e;
+      --ink: #0f1f2e;
+      --ink-soft: #3a5068;
+      --mist: #f4f9fc;
+      --white: #ffffff;
+      --border: #d6edf7;
+      --font-head: 'Sora', sans-serif;
+      --font-body: 'Lora', serif;
     }
-    header h1 { font-size: 3rem; margin-bottom: 1rem; color: #0d6efd; }
-    header p { font-size: 1.3rem; margin-bottom: 2rem; }
-    header a.button {
-      background-color: #32cd32; /* verde clarito */
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    header a.button:hover { opacity: 0.85; }
 
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
     nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6vw;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
     }
-    nav a { color: white; font-weight: 600; transition: 0.3s; }
-    nav a:hover { opacity: 0.8; }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(41,171,226,0.10); }
 
-    /* Sections */
-    section {
-      padding: 6rem 1rem;
-      text-align: center;
-    }
-    .section-title {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      color: #0d6efd;
-    }
-    .card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      margin: 1rem;
-      max-width: 400px;
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+    .nav-logo img { height: 44px; }
 
-    /* Contact Form */
-    form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-    input, textarea {
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--green);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 6vw 4rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f1f2e 0%, #1a3a52 60%, #1a7aad 100%);
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.07;
+      background: var(--blue);
+    }
+    .hero-bg-circle.c1 { width: 700px; height: 700px; top: -200px; right: -150px; }
+    .hero-bg-circle.c2 { width: 400px; height: 400px; bottom: -100px; left: -100px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
       width: 100%;
     }
-    button {
-      background-color: #0d6efd;
+
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.15;
       color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title span { color: var(--blue); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: var(--green);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+    .btn-ghost {
+      font-family: var(--font-head);
       font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { opacity: 0.85; }
-
-    /* Footer */
-    footer {
-      background-color: #0d6efd;
+      font-size: 0.95rem;
       color: white;
-      text-align: center;
-      padding: 2rem 1rem;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      animation: fadeUp 0.7s 0.4s ease both;
     }
 
-    @media(max-width: 768px) {
-      .cards { flex-direction: column; align-items: center; }
-      header h1 { font-size: 2.2rem; }
-      header p { font-size: 1.1rem; }
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 1.6rem;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.11); }
+
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 6rem 6vw; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 600px;
+    }
+
+    /* ── QUÉ SON LOS CAE ── */
+    #cae { background: var(--mist); }
+
+    .cae-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .cae-visual {
+      position: relative;
+    }
+
+    .cae-big-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 48px rgba(41,171,226,0.12);
+      border: 1px solid var(--border);
+    }
+
+    .cae-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cae-icon.green { background: #e6f9f2; }
+    .cae-icon.blue { background: var(--blue-light); }
+
+    .cae-card-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    .cae-card-text {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .cae-mini-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .cae-mini {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: box-shadow 0.2s;
+    }
+    .cae-mini:hover { box-shadow: 0 4px 20px rgba(41,171,226,0.1); }
+
+    .cae-info { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-item:last-child { border-bottom: none; }
+
+    .info-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .info-text { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.6; }
+    .info-text strong { color: var(--ink); font-family: var(--font-head); }
+
+    /* ── CÓMO FUNCIONA ── */
+    #proceso { background: white; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      z-index: 0;
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--blue);
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .step:hover .step-num { background: var(--blue); color: white; }
+
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .step-text {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── EJEMPLOS ── */
+    #ejemplos { background: var(--ink); }
+
+    #ejemplos .section-title { color: white; }
+    #ejemplos .section-tag { color: var(--green); }
+    #ejemplos .section-lead { color: rgba(255,255,255,0.6); }
+
+    .ejemplos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .ejemplo-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .ejemplo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+    }
+    .ejemplo-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.08); }
+
+    .ejemplo-tipo {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
+    }
+
+    .ejemplo-titulo {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+
+    .ejemplo-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .ejemplo-resultado {
+      background: rgba(61,190,138,0.12);
+      border: 1px solid rgba(61,190,138,0.25);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+    }
+
+    .resultado-num {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .resultado-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.1rem;
+    }
+
+    /* ── QUIÉNES SOMOS ── */
+    #nosotros { background: var(--mist); }
+
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .nosotros-values {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      background: white;
+      border-radius: 16px;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s;
+    }
+    .value-item:hover { box-shadow: 0 4px 24px rgba(41,171,226,0.1); }
+
+    .value-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .value-title {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .value-text { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
+
+    .nosotros-text .section-lead { max-width: 100%; margin-bottom: 1.5rem; }
+
+    .nosotros-highlight {
+      background: white;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      padding: 1.2rem 1.5rem;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: linear-gradient(135deg, #0f1f2e 0%, #1a3a52 100%);
+    }
+
+    #contacto .section-title { color: white; }
+    #contacto .section-tag { color: var(--green); }
+    #contacto .section-lead { color: rgba(255,255,255,0.6); max-width: 500px; }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: white;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      background: rgba(255,255,255,0.1);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: #1a3a52; color: white; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .btn-submit {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      background: var(--green);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-info-title {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(41,171,226,0.15);
+      border: 1px solid rgba(41,171,226,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-label {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item-value {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact-promise {
+      background: rgba(61,190,138,0.1);
+      border: 1px solid rgba(61,190,138,0.2);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-top: 1rem;
+    }
+
+    .contact-promise p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+    .contact-promise strong { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #08131d;
+      padding: 2.5rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer img { height: 32px; opacity: 0.7; }
+
+    .footer-copy {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cae-grid,
+      .nosotros-grid,
+      .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .ejemplos-grid { grid-template-columns: 1fr; }
+
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Bafir</h1>
-    <p>Monetizamos tus Certificados de Ahorro Energético (CAE) de manera rápida y eficiente</p>
-    <nav>
-      <a href="#monetizamos">Monetizamos tus CAE</a>
-      <a href="#quien">Quién puede optar</a>
-      <a href="#contact">Contacto</a>
-    </nav>
-    <a href="#contact" class="button">Contáctanos</a>
-  </header>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#hero">
+      <img src="bafir_logo_nombre.png" alt="BAFIR" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#cae">¿Qué son los CAE?</a></li>
+      <li><a href="#proceso">Cómo funciona</a></li>
+      <li><a href="#ejemplos">Ejemplos</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Solicitar análisis gratuito</a>
+  </nav>
 
-  <section id="monetizamos">
-    <h2 class="section-title">Monetizamos tus CAE</h2>
-    <p>Convertimos tus certificados en valor real de forma segura y transparente, facilitando la gestión de tus proyectos energéticos.</p>
-    <div class="cards">
-      <div class="card">
-        <h3>Rápido</h3>
-        <p>Gestión eficiente y sin complicaciones.</p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-tag">Certificados de Ahorro Energético</span>
+        <h1 class="hero-title">
+          Tu eficiencia energética<br />
+          <span>vale dinero.</span><br />
+          Nosotros te lo gestionamos.
+        </h1>
+        <p class="hero-sub">
+          BAFIR ayuda a pymes, comercios y comunidades de vecinos a obtener ingresos reales por sus mejoras de eficiencia energética, sin burocracia ni complicaciones.
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-primary">Solicitar análisis gratuito</a>
+          <a href="#cae" class="btn-ghost">¿Qué son los CAE?</a>
+        </div>
       </div>
-      <div class="card">
-        <h3>Transparente</h3>
-        <p>Proceso claro con seguimiento constante.</p>
-      </div>
-      <div class="card">
-        <h3>Seguro</h3>
-        <p>Operaciones confiables y verificadas.</p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Gestión integral sin coste inicial para ti</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">48h</div>
+          <div class="stat-label">Tiempo estimado para recibir tu análisis</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">+30%</div>
+          <div class="stat-label">Ahorro energético medio conseguido</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">0€</div>
+          <div class="stat-label">Sin inversión previa para empezar</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="quien">
-    <h2 class="section-title">Quién puede optar a los CAE</h2>
-    <p>Empresas del sector energético, constructoras sostenibles, y cualquier proyecto que cumpla los criterios de eficiencia energética.</p>
+  <!-- QUÉ SON LOS CAE -->
+  <section id="cae">
+    <div class="section-inner">
+      <div class="section-tag">El mecanismo</div>
+      <h2 class="section-title">¿Qué son los Certificados<br />de Ahorro Energético?</h2>
+
+      <div class="cae-grid">
+        <div class="cae-info reveal">
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div class="info-text">
+              <strong>Un certificado con valor económico.</strong> Los CAE son títulos que acreditan que se ha producido un ahorro energético real y verificado. Las grandes empresas energéticas están obligadas por ley a comprarlos.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div class="info-text">
+              <strong>Tú ahorras energía, ellos pagan.</strong> Cuando una pyme, comercio o comunidad de vecinos realiza una mejora de eficiencia —iluminación LED, calefacción, aislamiento…— genera CAE que pueden venderse.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div class="info-text">
+              <strong>Compatible con otras ayudas.</strong> Los CAE son acumulables con subvenciones del IDAE, fondos europeos o deducciones fiscales. No se excluyen entre sí.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div class="info-text">
+              <strong>Regulado por el Gobierno español.</strong> El sistema CAE está regulado por el Plan Nacional de Ahorro Energético y supervisado por el Ministerio para la Transición Ecológica.
+            </div>
+          </div>
+        </div>
+
+        <div class="cae-visual reveal">
+          <div class="cae-big-card">
+            <div class="cae-icon green">🌿</div>
+            <div class="cae-card-title">¿Qué actuaciones generan CAE?</div>
+            <div class="cae-card-text">Cualquier mejora que reduzca el consumo energético de forma verificable.</div>
+            <div class="cae-mini-cards">
+              <div class="cae-mini">
+                <span style="font-size:1.4rem">💡</span>
+                <div>
+                  <div class="cae-card-title">Iluminación LED</div>
+                  <div class="cae-card-text">Sustitución de luminarias en locales, oficinas, naves y zonas comunes.</div>
+                </div>
+              </div>
+              <div class="cae-mini">
+                <span style="font-size:1.4rem">🔥</span>
+                <div>
+                  <div class="cae-card-title">Climatización eficiente</div>
+                  <div class="cae-card-text">Calderas de condensación, bombas de calor, sistemas de aerotermia.</div>
+                </div>
+              </div>
+              <div class="cae-mini">
+                <span style="font-size:1.4rem">🏠</span>
+                <div>
+                  <div class="cae-card-title">Aislamiento y envolvente</div>
+                  <div class="cae-card-text">Rehabilitación energética de fachadas, cubiertas y ventanas.</div>
+                </div>
+              </div>
+              <div class="cae-mini">
+                <span style="font-size:1.4rem">☀️</span>
+                <div>
+                  <div class="cae-card-title">Energías renovables</div>
+                  <div class="cae-card-text">Instalación de placas solares fotovoltaicas o térmicas.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contact">
-    <h2 class="section-title">Contacto</h2>
-    <form>
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo electrónico" required>
-      <textarea placeholder="Mensaje" rows="5" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+  <!-- CÓMO FUNCIONA -->
+  <section id="proceso">
+    <div class="section-inner">
+      <div class="section-tag">El proceso</div>
+      <h2 class="section-title">Cómo funciona con BAFIR</h2>
+      <p class="section-lead">Nos encargamos de todo el proceso, de principio a fin. Tú solo tienes que decirnos en qué has mejorado (o qué quieres mejorar).</p>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Análisis gratuito</div>
+          <div class="step-text">Estudiamos tu situación y te decimos qué actuaciones generan CAE y cuánto podrías obtener.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Documentación</div>
+          <div class="step-text">Recopilamos toda la documentación técnica y legal necesaria para la solicitud de los certificados.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Tramitación</div>
+          <div class="step-text">Gestionamos el proceso ante la administración y las empresas obligadas a comprar los CAE.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Cobro garantizado</div>
+          <div class="step-text">Recibes el ingreso directamente. BAFIR cobra únicamente una comisión sobre el resultado obtenido.</div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- EJEMPLOS -->
+  <section id="ejemplos">
+    <div class="section-inner">
+      <div class="section-tag">Casos reales</div>
+      <h2 class="section-title">Ejemplos concretos</h2>
+      <p class="section-lead">Estas son situaciones habituales con las que trabajamos. Los importes varían según el consumo previo y la mejora realizada.</p>
+
+      <div class="ejemplos-grid reveal">
+        <div class="ejemplo-card">
+          <div class="ejemplo-tipo">Comercio</div>
+          <div class="ejemplo-titulo">Tienda de ropa en Madrid</div>
+          <div class="ejemplo-desc">Local de 200 m² que sustituyó su iluminación fluorescente por LED de alta eficiencia. Consumo previo: 18.000 kWh/año. Reducción certificada del 62%.</div>
+          <div class="ejemplo-resultado">
+            <div class="resultado-num">3.800 €</div>
+            <div class="resultado-label">Ingreso obtenido por CAE + ahorro anual en factura</div>
+          </div>
+        </div>
+
+        <div class="ejemplo-card">
+          <div class="ejemplo-tipo">Comunidad de vecinos</div>
+          <div class="ejemplo-titulo">Edificio residencial en Barcelona</div>
+          <div class="ejemplo-desc">Comunidad de 24 viviendas que rehabilitó la fachada e instaló una caldera de condensación centralizada. Mejora de calificación energética de E a B.</div>
+          <div class="ejemplo-resultado">
+            <div class="resultado-num">21.500 €</div>
+            <div class="resultado-label">Ingreso total por CAE distribuido entre propietarios</div>
+          </div>
+        </div>
+
+        <div class="ejemplo-card">
+          <div class="ejemplo-tipo">Pyme industrial</div>
+          <div class="ejemplo-titulo">Taller mecánico en Valencia</div>
+          <div class="ejemplo-desc">Nave de 800 m² con instalación solar fotovoltaica de 40 kWp y renovación del sistema de aire comprimido. Autoconsumo del 70% de la energía eléctrica.</div>
+          <div class="ejemplo-resultado">
+            <div class="resultado-num">12.200 €</div>
+            <div class="resultado-label">Ingreso por CAE más retorno de inversión en 4 años</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="nosotros">
+    <div class="section-inner">
+      <div class="nosotros-grid">
+        <div class="nosotros-text reveal">
+          <div class="section-tag">Quiénes somos</div>
+          <h2 class="section-title">Especialistas en eficiencia energética y financiación verde</h2>
+          <p class="section-lead">BAFIR nació con un propósito claro: hacer que el sistema de Certificados de Ahorro Energético sea accesible para empresas y particulares que no tienen tiempo ni recursos para navegar sola la burocracia energética.</p>
+          <br />
+          <p class="section-lead">Trabajamos como intermediarios especializados: conocemos la normativa, los plazos y los actores del mercado. Nuestro modelo es simple — solo cobramos si obtenemos resultados para ti.</p>
+          <br />
+          <div class="nosotros-highlight">
+            "El sistema CAE existe desde 2018 en España y millones de euros en certificados quedan sin tramitar cada año simplemente por desconocimiento. Nosotros ponemos ese dinero en manos de quien lo merece."
+          </div>
+        </div>
+
+        <div class="nosotros-values reveal">
+          <div class="value-item">
+            <div class="value-icon">🎯</div>
+            <div>
+              <div class="value-title">Solo cobramos por resultados</div>
+              <div class="value-text">Sin cuotas fijas ni adelantos. Nuestra comisión se aplica únicamente sobre los ingresos que obtenemos para ti.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🔍</div>
+            <div>
+              <div class="value-title">Transparencia total</div>
+              <div class="value-text">Te explicamos cada paso del proceso, los plazos reales y los importes esperados antes de empezar.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">⚡</div>
+            <div>
+              <div class="value-title">Gestión ágil</div>
+              <div class="value-text">Nos ocupamos de toda la documentación y la tramitación. Tu dedicación de tiempo es mínima.</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌱</div>
+            <div>
+              <div class="value-title">Impacto medioambiental real</div>
+              <div class="value-text">Cada CAE que tramitamos certifica un ahorro energético concreto y verificado. Más dinero para ti, menos CO₂ para todos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-inner">
+      <div class="section-tag">Empieza hoy</div>
+      <h2 class="section-title">Solicita tu análisis gratuito</h2>
+      <p class="section-lead">Sin compromiso. En menos de 48 horas te decimos si tu situación genera CAE y cuánto podrías obtener.</p>
+
+      <div class="contacto-grid">
+        <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="tu@email.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+34 600 000 000" />
+            </div>
+            <div class="form-group">
+              <label>Tipo de cliente</label>
+              <select>
+                <option value="">Selecciona...</option>
+                <option>Pyme / Comercio</option>
+                <option>Comunidad de vecinos</option>
+                <option>Particular</option>
+                <option>Empresa industrial</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>¿Qué mejora has realizado o quieres realizar?</label>
+            <textarea placeholder="Cuéntanos brevemente tu situación: tipo de local, mejora realizada o prevista, consumo aproximado..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Solicitar análisis gratuito →</button>
+        </form>
+
+        <div class="contact-info reveal">
+          <div class="contact-info-title">También puedes contactarnos directamente</div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">info@bafir.es</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-item-label">Teléfono / WhatsApp</div>
+              <div class="contact-item-value">+34 600 000 000</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Zona de actuación</div>
+              <div class="contact-item-value">Todo el territorio español</div>
+            </div>
+          </div>
+
+          <div class="contact-promise">
+            <p><strong>Nuestra promesa:</strong> analizamos tu caso en menos de 48 horas y te damos una estimación honesta. Si no hay oportunidad real, te lo decimos claramente. Sin perder tu tiempo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Bafir. Todos los derechos reservados.</p>
+    <img src="bafir_logo_nombre.png" alt="BAFIR" />
+    <p class="footer-copy">© 2025 BAFIR · Todos los derechos reservados</p>
+    <div class="footer-links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Cookies</a>
+    </div>
   </footer>
 
+  <script>
+    // Scroll nav shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Solicitud enviada — te contactamos en 48h';
+      btn.style.background = '#2a9a6e';
+      btn.disabled = true;
+    }
+  </script>
 </body>
 </html>
