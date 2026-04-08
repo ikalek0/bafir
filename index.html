@@ -740,7 +740,7 @@
   <!-- NAV -->
   <nav id="navbar">
     <a class="nav-logo" href="#hero">
-      <img src="bafir_logo.png" alt="BAFIR" />
+      <img src="https://raw.githubusercontent.com/ikalek0/bafir/main/bafir_logo.png" alt="BAFIR" />
     </a>
     <ul class="nav-links">
       <li><a href="#cae">¿Qué son los CAE?</a></li>
@@ -1069,7 +1069,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <img src="bafir_logo.png" alt="BAFIR" />
+    <img src="https://raw.githubusercontent.com/ikalek0/bafir/main/bafir_logo.png" alt="BAFIR" />
     <p class="footer-copy">© 2025 BAFIR · Todos los derechos reservados</p>
     <div class="footer-links">
       <a href="#">Política de privacidad</a>
@@ -1100,10 +1100,18 @@
     // Form submit
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = '✓ Solicitud enviada — te contactamos en 48h';
+      const form = e.target;
+      const nombre = form.querySelector('input[type="text"]').value;
+      const email = form.querySelector('input[type="email"]').value;
+      const telefono = form.querySelector('input[type="tel"]').value;
+      const tipo = form.querySelector('select').value;
+      const mensaje = form.querySelector('textarea').value;
+      const subject = encodeURIComponent('Solicitud análisis CAE - ' + nombre);
+      const body = encodeURIComponent('Nombre: ' + nombre + '\nEmail: ' + email + '\nTeléfono: ' + telefono + '\nTipo de cliente: ' + tipo + '\n\nMensaje:\n' + mensaje);
+      window.location.href = 'mailto:idelacalle@bafir.es?subject=' + subject + '&body=' + body;
+      const btn = form.querySelector('.btn-submit');
+      btn.textContent = '✓ Abriendo tu cliente de correo...';
       btn.style.background = '#2a9a6e';
-      btn.disabled = true;
     }
   </script>
 </body>
