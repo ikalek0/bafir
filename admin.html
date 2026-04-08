@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAFIR — Acceso Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --gold: #c9a84c;
+  --goldfade: rgba(201,168,76,0.12);
+  --text: #e8e6e0;
+  --dim: #8a8880;
+  --border: rgba(201,168,76,0.18);
+  --red: #e05252;
+  --green: #52c4a0;
+  --font: 'Sora', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* Login screen */
+.login-wrap { width: 100%; max-width: 380px; padding: 24px; }
+.login-logo { text-align: center; margin-bottom: 32px; }
+.login-logo-text { font-size: 28px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; }
+.login-logo-sub { font-size: 12px; color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 4px; }
+.login-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+.login-title { font-size: 16px; color: var(--dim); text-align: center; margin-bottom: 24px; }
+.login-field { margin-bottom: 16px; }
+.login-field label { display: block; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.login-field input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s; }
+.login-field input:focus { border-color: var(--gold); }
+.login-btn { width: 100%; background: var(--goldfade); border: 1px solid var(--gold); border-radius: 8px; padding: 13px; color: var(--gold); font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.05em; transition: background 0.2s; margin-top: 8px; }
+.login-btn:hover { background: rgba(201,168,76,0.2); }
+.login-error { color: var(--red); font-size: 12px; text-align: center; margin-top: 12px; display: none; }
+.back-link { text-align: center; margin-top: 20px; font-size: 12px; color: var(--dim); }
+.back-link a { color: var(--dim); text-decoration: none; }
+.back-link a:hover { color: var(--gold); }
+
+/* Dashboard portal */
+.portal { display: none; width: 100%; max-width: 800px; padding: 24px; }
+.portal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+.portal-title { font-size: 20px; font-weight: 700; color: var(--gold); }
+.portal-sub { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.logout-btn { font-size: 12px; color: var(--dim); cursor: pointer; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-family: var(--font); }
+.logout-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.dash-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 22px; text-decoration: none; display: block; transition: border-color 0.2s, transform 0.15s; }
+.dash-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.dash-icon { font-size: 28px; margin-bottom: 12px; }
+.dash-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.dash-desc { font-size: 12px; color: var(--dim); line-height: 1.5; }
+.dash-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 10px; }
+.badge-live { background: rgba(82,196,160,0.15); color: var(--green); border: 1px solid rgba(82,196,160,0.3); }
+.badge-paper { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid var(--border); }
+.badge-data { background: rgba(107,140,255,0.12); color: #6b8cff; border: 1px solid rgba(107,140,255,0.25); }
+
+.status-bar { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); }
+.dot-ok { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+.footer-note { margin-top: 24px; text-align: center; font-size: 11px; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="login-wrap">
+  <div class="login-logo">
+    <div class="login-logo-text">BAFIR</div>
+    <div class="login-logo-sub">Acceso restringido</div>
+  </div>
+  <div class="login-card">
+    <div class="login-title">Introduce tus credenciales de acceso</div>
+    <div class="login-field">
+      <label>Usuario</label>
+      <input type="text" id="user-input" placeholder="usuario" autocomplete="username">
+    </div>
+    <div class="login-field">
+      <label>Contraseña</label>
+      <input type="password" id="pass-input" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Acceder al panel</button>
+    <div class="login-error" id="login-error">Credenciales incorrectas</div>
+  </div>
+  <div class="back-link"><a href="/">← Volver a bafir.es</a></div>
+</div>
+
+<!-- PORTAL -->
+<div class="portal" id="portal">
+  <div class="portal-header">
+    <div>
+      <div class="portal-title">BAFIR TRADING — Panel de Control</div>
+      <div class="portal-sub">Infraestructura en Hetzner · IP 91.98.128.33</div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
+  </div>
+
+  <div class="status-bar">
+    <div class="dot-ok"></div>
+    Servidor activo · 6 servicios en producción · PM2 autoarranque configurado
+  </div>
+
+  <div class="grid">
+    <a class="dash-card" href="http://91.98.128.33:3000/admin" target="_blank">
+      <div class="dash-icon">🏛️</div>
+      <div class="dash-name">Bafir Admin</div>
+      <div class="dash-desc">Panel de gestión principal. Equity curves, estado de los bots, clientes.</div>
+      <span class="dash-badge badge-live">Puerto 3000</span>
+    </a>
+    <a class="dash-card" href="http://91.98.128.33:3001" target="_blank">
+      <div class="dash-icon">🔴</div>
+      <div class="dash-name">Live Bot</div>
+      <div class="dash-desc">8 estrategias con $100 real. Engine rule-based validado. Binance conectado.</div>
+      <span class="dash-badge badge-live">Live · Puerto 3001</span>
+    </a>
+    <a class="dash-card" href="http://91.98.128.33:3002" target="_blank">
+      <div class="dash-icon">📋</div>
+      <div class="dash-name">Paper Bot</div>
+      <div class="dash-desc">$50,000 virtual. DQN + MultiAgent + StrategyEvaluator. Aprendizaje continuo.</div>
+      <span class="dash-badge badge-paper">Simulación · Puerto 3002</span>
+    </a>
+    <a class="dash-card" href="http://91.98.128.33:3003" target="_blank">
+      <div class="dash-icon">🔬</div>
+      <div class="dash-name">Test A/B</div>
+      <div class="dash-desc">Comparación engine simple vs complejo. Valida si el ML añade valor real.</div>
+      <span class="dash-badge badge-paper">A/B Test · Puerto 3003</span>
+    </a>
+    <a class="dash-card" href="http://91.98.128.33:3004" target="_blank">
+      <div class="dash-icon">📊</div>
+      <div class="dash-name">Sentiment</div>
+      <div class="dash-desc">8 indicadores: F&G, liquidaciones, whale flow, L/S ratio, OI, taker, funding, Reddit.</div>
+      <span class="dash-badge badge-data">Datos · Puerto 3004</span>
+    </a>
+    <a class="dash-card" href="http://91.98.128.33:3005" target="_blank">
+      <div class="dash-icon">🔍</div>
+      <div class="dash-name">Arbitrage Monitor</div>
+      <div class="dash-desc">Monitor pasivo Binance/Coinbase/Kraken. Solo observa, no ejecuta.</div>
+      <span class="dash-badge badge-data">Monitor · Puerto 3005</span>
+    </a>
+  </div>
+
+  <div class="footer-note">
+    Credenciales de cada dashboard: usuario <code>bafir</code> / contraseña <code>bafir2026</code>
+  </div>
+</div>
+
+<script>
+// Simple password gate — real security is in each dashboard's basic auth
+const ADMIN_USER = "bafir";
+const ADMIN_PASS = "bafir2026";
+
+function doLogin() {
+  const u = document.getElementById('user-input').value;
+  const p = document.getElementById('pass-input').value;
+  if(u === ADMIN_USER && p === ADMIN_PASS) {
+    sessionStorage.setItem('bafir_admin', '1');
+    showPortal();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    setTimeout(()=>document.getElementById('login-error').style.display='none', 3000);
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('bafir_admin');
+  document.getElementById('portal').style.display = 'none';
+  document.getElementById('login-wrap').style.display = 'block';
+  document.getElementById('user-input').value = '';
+  document.getElementById('pass-input').value = '';
+}
+
+function showPortal() {
+  document.getElementById('login-wrap').style.display = 'none';
+  document.getElementById('portal').style.display = 'block';
+}
+
+// Check session
+if(sessionStorage.getItem('bafir_admin') === '1') showPortal();
+
+// Enter key to login
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && document.getElementById('login-wrap').style.display !== 'none') doLogin();
+});
+</script>
+</body>
+</html>
